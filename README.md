@@ -1,8 +1,9 @@
 # A Variation of the Renard Series
 
 The Renard Series is a system of preferred numbers which divides an interval
-from 1 to 10 into an approximately geometric sequence. We propose a variation
-of the Renard 10 Series (R10 Series), altering the 6th and 9th element:
+from 1 to 10 into an approximately geometric sequence, standardized in ISO 3.
+We here discuss a variation of the Renard 10 Series (R10 Series), dubbing it
+the R10f Series. It differs in the 6th and 9th elements:
 
 - 1.00 (1st element)
 - 1.25 (2nd element)
@@ -31,45 +32,16 @@ By changing the 6th and 9th entries, we ensure that:
     the 6th element, are exceptions.
 - Just like the standardized R10 Series, the ratio of an element and the
   element two steps after it approximates the golden ratio.
-  - Every element is either 1.6000 or 1.5625 (which is 1.25²) times the element
+  - Every element is either 1.6000 or 1.5625 times the element
     two steps before it.
 
-This variation leads to a variation of the standardized Renard 5 Series
-(R5 Series):
-
-- 1.00 (R5: 1st element)
-- 1.60 (R5: 2nd element)
-- 2.50 (R5: 3rd element)
-- 4.00 (R5: 4th element)
-- 6.40 (R5: 5th element, the standardized R5 Series has 6.30 here)
-- 10.0
-- ...and so on...
-
-What we might call the "R3 Series", is also called the 1-2-5 Series, where each
-step is a very coarse approximation of the cube root of 10:
-
-- 1.00 (R3: 1st element)
-- 2.00 (R3: 2nd element)
-- 5.00 (R3: 3rd element)
-- 10.0
-- ...and so on...
-
-## Miscellaneous Series
-
-Perhaps a useful intermediate between R3 and R5 is the following selection of
-numbers for an "R4 Series":
-
-- 1.00 (1st element)
-- 1.60 (2nd element)
-- 3.20 (3rd element)
-- 5.00 (4th element)
-- 10.0
-- ...and so on...
+Please see [`content.typ`](./content.typ) for a more thorough discussion of the
+R10f system of preferred numbers.
 
 ## Table of Ratios
 
-The file `r10f.tsv` contains a table of ratios in a machine readable format,
-starting with the elements in the decade `1..10`.
+The file [`r10f-ratios.tsv`](./r10f-ratios.tsv) contains a table of ratios in a
+machine readable format, starting with the elements in the decade `1..10`.
 
 - The first column is the R10f element.
 - The second column is its ratio to the element one step before it. For
