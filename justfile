@@ -3,14 +3,16 @@
 set shell := ['bash', '-o', 'errexit', '-o', 'nounset', '-o', 'pipefail', '-c']
 
 # # Build the website.
-# [default]
-# dist: (web) (render)
-#     @mkdir -p tmp/dist
-#     cp tmp/index.html tmp/dist/
-#     cp tmp/main.pdf tmp/dist/
+[default]
+dist: (web) (pdf)
+    #!/bin/bash
+    set -o errexit -o nounset -o pipefail
 
-# Render the main webpage.
-web: (typst "main.typ" "tmp/index.html" "--features" "html")
+    mkdir -p tmp/dist
+    cp tmp/build/index.html tmp/dist
+
+    label="$(fgrep label ./info.yaml | cut -d: -f 2 | tr -d ' ')"
+    cp tmp/build/paged.pdf tmp/dist/"$label".pdf
 
 # Run Typst.
 typst input output *args:
@@ -26,6 +28,7 @@ metadata:
 
     mkdir -p tmp/build/
     cat > tmp/build/metadata.typ <<EOF
+    #let info = yaml("../../info.yaml")
     #set document(
       author: "$(git log -n1 --format=%an)",
       date: datetime(
@@ -34,7 +37,9 @@ metadata:
         day: $(git log -n1 --date=format:%d --format=%ad),
       ),
     )
-    #metadata("$(git log -n1 --date=format:%Y%m%d --format=%ad-%h)") <release>
+    #metadata(
+      info.label + ":$(git log -n1 --date=format:%Y%m%d --format=%ad-%h)"
+    ) <release>
     EOF
 
 # Render the PDF.
@@ -45,12 +50,13 @@ pdf: metadata
     mkdir -p tmp/build/
     cd tmp/build/
 
-    cat > paged.typ <<\EOF
+    cat > paged.typ <<EOF
     #import "../../formats.typ"
+
+    $(cat ./metadata.typ)
 
     #show: formats.paged
     #include "../../main.typ"
-    #include "./metadata.typ"
     EOF
 
     typst compile --root ../../ paged.typ paged.pdf
@@ -58,6 +64,28 @@ pdf: metadata
 # Build and view the PDF.
 view-pdf: pdf
     open tmp/build/paged.pdf
+
+# Render the main webpage.
+web: metadata
+    #!/bin/bash
+    set -o errexit -o nounset -o pipefail
+
+    mkdir -p tmp/build/
+    cd tmp/build/
+
+    cat > web.typ <<EOF
+    #import "../../formats.typ"
+
+    $(cat ./metadata.typ)
+
+    #show: formats.web
+    #include "../../main.typ"
+    EOF
+
+    typst compile --root ../../ --features html web.typ index.html
+
+view-web: web
+    open tmp/build/index.html
 
 # Render a document with Typst.
 render doc="main.typ":

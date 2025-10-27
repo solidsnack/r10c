@@ -1,22 +1,12 @@
 #let paged(doc, paper: "a5") = [
   #set page(
-    footer: context {
-      let page-num = counter(page).display(both: true)
-      let meta = query(<release>)
-
-      let content = if meta.len() > 0 {
-        [#page-num \
-         #meta.first().value]
-      } else {
-        page-num
-      }
-
-      align(center)[#content]
-    },
     footer-descent: 25%,
     header: context {
-      let title = document.title
-      align(right, document.title)
+      let rel = query(<release>)
+
+      if rel.len() > 0 {
+        align(center)[#raw(rel.first().value)]
+      }
     },
     header-ascent: 25%,
     margin: (
@@ -43,13 +33,40 @@
   #show title: set align(center)
 
   // Replace empty block.
-  #show <attribution>: txt => block(breakable: false)[
-    #context { document.date } \
-    #context { document.author }
+  #show <attribution>: txt => block(breakable: false, width: 100%)[
+    #set block(spacing: 1%)
+    #context {
+      align(center)[
+        #block()[#document.date.display()]
+
+        #for author in document.author [
+          #block()[#author]
+        ]
+      ]
+    }
   ]
 
   #doc
 ]
 
 // Do nothing.
-#let html(doc) = [ #doc ]
+#let web(doc) = [
+  // Replace empty block.
+  #show <attribution>: txt => block(breakable: false, width: 100%)[
+    #context [
+        / Date: #document.date.display()
+
+        #let rel = query(<release>)
+        #if rel.len() > 0 [
+          / Release: #raw(rel.first().value)
+        ]
+
+        #let authors = document.author
+        #if authors.len() > 0 [
+          / Authors: #authors.join(", ")
+        ]
+    ]
+  ]
+
+  #doc
+]

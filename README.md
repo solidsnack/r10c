@@ -2,8 +2,8 @@
 
 The Renard Series is a system of preferred numbers which divides an interval
 from 1 to 10 into an approximately geometric sequence, standardized in ISO 3.
-We here discuss a variation of the Renard 10 Series (R10 Series), dubbing it
-the R10f Series. It differs in the 6th and 9th elements:
+We here discuss a variation of the Renard 10 Series (R10 Series), which differs
+in the 6th and 9th elements:
 
 - 1.00 (1st element)
 - 1.25 (2nd element)
@@ -24,7 +24,6 @@ By changing the 6th and 9th entries, we ensure that:
 
 - Every element is either 1.25 or 1.28 times the previous element. The standard
   series has ratios of 1.23, 1.25, 1.28 and ≈1.30 between adjacent elements.
-  - In consqeuence, we call this the R10f series, because it has fewer factors.
 - Most elements are exactly twice the element 3 steps before them.
   - The exception is the second element, 1.25 (or 12.5, &c) -- the element 3
     steps before it is 0.64 (or 6.4, &c.).
@@ -35,15 +34,15 @@ By changing the 6th and 9th entries, we ensure that:
   - Every element is either 1.6000 or 1.5625 times the element
     two steps before it.
 
-Please see [`content.typ`](./content.typ) for a more thorough discussion of the
-R10f system of preferred numbers.
+Please see [`main.typ`](./main.typ) for a more thorough discussion of this
+system of preferred numbers.
 
 ## Table of Ratios
 
-The file [`r10f-ratios.tsv`](./r10f-ratios.tsv) contains a table of ratios in a
+The file [`dr10-ratios.tsv`](./df10-ratios.tsv) contains a table of ratios in a
 machine readable format, starting with the elements in the decade `1..10`.
 
-- The first column is the R10f element.
+- The first column is the element.
 - The second column is its ratio to the element one step before it. For
   example, 1 is 1.25× the element one step before it (0.8) and 1.6 is 1.28×
   the element one step before it (1.25). These ratios are always either 1.25 or
