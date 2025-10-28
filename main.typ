@@ -1,15 +1,9 @@
-#let info = yaml("./info.yaml")
-#set document(title: [#info.title])
 #set heading(numbering: "1.a.1.a -")
 #set par(justify: true)
 #set text(
   hyphenate: false,
   number-width: "tabular",
 )
-
-#title()
-
-#block(breakable: false)[] <attribution>
 
 #block(breakable: false)[
 = Introduction

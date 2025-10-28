@@ -32,8 +32,9 @@
   #show title: txt => text(size: 4mm, weight: "bold")[#smallcaps(txt)]
   #show title: set align(center)
 
-  // Replace empty block.
-  #show <attribution>: txt => block(breakable: false, width: 100%)[
+  #title()
+
+  #block(breakable: false, width: 100%)[
     #set block(spacing: 1%)
     #context {
       align(center)[
@@ -51,8 +52,9 @@
 
 // Do nothing.
 #let web(doc) = [
-  // Replace empty block.
-  #show <attribution>: txt => block(breakable: false, width: 100%)[
+  #title()
+
+  #block(breakable: false, width: 100%)[
     #context [
         / Date: #document.date.display()
 

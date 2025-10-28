@@ -30,6 +30,7 @@ metadata:
     cat > tmp/build/metadata.typ <<EOF
     #let info = yaml("../../info.yaml")
     #set document(
+      title: [#info.title],
       author: "$(git log -n1 --format=%an)",
       date: datetime(
         year: $(git log -n1 --date=format:%Y --format=%ad),
