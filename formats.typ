@@ -54,6 +54,9 @@
 
 // Do nothing.
 #let web(info, doc) = [
+  #html.link(href: "css/normalize.css", rel: "stylesheet")
+  #html.link(href: "css/style.css", rel: "stylesheet")
+
   #title()
 
   #block(breakable: false, width: 100%)[
@@ -72,7 +75,8 @@
 
         #let pdf = info.label + ".pdf"
 
-        / PDF: #html.a(href: "./" + pdf)[#raw(pdf)]
+        / Printable: #html.a(href: "./" + pdf)[#raw(pdf)]
+        / Sources: #html.a(href: info.sources)[#raw(info.sources)]
     ]
   ]
 

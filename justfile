@@ -4,15 +4,32 @@ set shell := ['bash', '-o', 'errexit', '-o', 'nounset', '-o', 'pipefail', '-c']
 
 # # Build the website.
 [default]
-dist: (web) (pdf)
+dist: (dist-web) (dist-pdf)
+
+dist-pdf: pdf
+    #!/bin/bash
+    set -o errexit -o nounset -o pipefail
+
+    label="$(fgrep label ./info.typ | cut -d':' -f 2- | tr -Cd 'a-z0-9')"
+
+    mkdir -p tmp/dist
+    cp tmp/build/paged.pdf tmp/dist/"$label".pdf
+
+# Build and view the PDF.
+view-pdf: dist-pdf
+    open tmp/dist/paged.pdf
+
+dist-web: web
     #!/bin/bash
     set -o errexit -o nounset -o pipefail
 
     mkdir -p tmp/dist
+    cp -a tmp/build/css/ tmp/dist/css/
     cp tmp/build/index.html tmp/dist
 
-    label="$(fgrep label ./info.typ | cut -d':' -f 2- | tr -Cd 'a-z0-9')"
-    cp tmp/build/paged.pdf tmp/dist/"$label".pdf
+# Build and view the web page.
+view-web: dist-web
+    open tmp/dist/index.html
 
 # Run Typst.
 typst input output *args:
@@ -61,16 +78,15 @@ pdf: metadata
 
     typst compile --root ../../ paged.typ paged.pdf
 
-# Build and view the PDF.
-view-pdf: pdf
-    open tmp/build/paged.pdf
-
 # Render the main webpage.
 web: metadata
     #!/bin/bash
     set -o errexit -o nounset -o pipefail
 
     mkdir -p tmp/build/
+
+    tar -c css/ | tar -C tmp/build/ -x
+
     cd tmp/build/
 
     cat > web.typ <<EOF
@@ -82,9 +98,6 @@ web: metadata
     EOF
 
     typst compile --root ../../ --features html web.typ index.html
-
-view-web: web
-    open tmp/build/index.html
 
 # Render a document with Typst.
 render doc="main.typ":

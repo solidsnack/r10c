@@ -1,0 +1,56 @@
+dl {
+  border: 1px dotted;
+  display: flex;
+  flex-flow: row wrap;
+  margin: 0 19%;
+  padding: 0.5em;
+  width: 62%;
+}
+
+dd {
+  flex-basis: 80%;
+  flex-grow: 1;
+  margin: 0;
+  padding: 0;
+}
+
+dd p {
+  display: inline;
+}
+
+dt {
+  flex-basis: 20%;
+  font-variant: small-caps;
+  margin: 0;
+  padding: 0;
+}
+
+dt::after {
+  content: ":";
+}
+
+h1 {
+  text-align: center;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-variant: small-caps;
+}
+
+html {
+  color-scheme: light dark;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  text-align: left;
+}
+
+tr {
+  border: 1px;
+  border-style: solid none;
+}
