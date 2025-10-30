@@ -1,4 +1,4 @@
-#let paged(doc, paper: "a5") = [
+#let paged(info, doc, paper: "a5") = [
   #set page(
     footer-descent: 25%,
     header: context {
@@ -43,6 +43,8 @@
         #for author in document.author [
           #block()[#author]
         ]
+
+        #block()[#link("https://" + info.domain)[#raw(info.domain)]]
       ]
     }
   ]
@@ -51,7 +53,7 @@
 ]
 
 // Do nothing.
-#let web(doc) = [
+#let web(info, doc) = [
   #title()
 
   #block(breakable: false, width: 100%)[
@@ -67,6 +69,10 @@
         #if authors.len() > 0 [
           / Authors: #authors.join(", ")
         ]
+
+        #let pdf = info.label + ".pdf"
+
+        / PDF: #html.a(href: "./" + pdf)[#raw(pdf)]
     ]
   ]
 

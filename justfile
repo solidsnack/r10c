@@ -11,7 +11,7 @@ dist: (web) (pdf)
     mkdir -p tmp/dist
     cp tmp/build/index.html tmp/dist
 
-    label="$(fgrep label ./info.yaml | cut -d: -f 2 | tr -d ' ')"
+    label="$(fgrep label ./info.typ | cut -d':' -f 2- | tr -Cd 'a-z0-9')"
     cp tmp/build/paged.pdf tmp/dist/"$label".pdf
 
 # Run Typst.
@@ -28,9 +28,9 @@ metadata:
 
     mkdir -p tmp/build/
     cat > tmp/build/metadata.typ <<EOF
-    #let info = yaml("../../info.yaml")
+    $(cat ./info.typ)
     #set document(
-      title: [#info.title],
+      title: info.title,
       author: "$(git log -n1 --format=%an)",
       date: datetime(
         year: $(git log -n1 --date=format:%Y --format=%ad),
@@ -56,8 +56,7 @@ pdf: metadata
 
     $(cat ./metadata.typ)
 
-    #show: formats.paged
-    #include "../../main.typ"
+    #show: formats.paged(info)[#include "../../main.typ"]
     EOF
 
     typst compile --root ../../ paged.typ paged.pdf
@@ -79,8 +78,7 @@ web: metadata
 
     $(cat ./metadata.typ)
 
-    #show: formats.web
-    #include "../../main.typ"
+    #show: formats.web(info)[#include "../../main.typ"]
     EOF
 
     typst compile --root ../../ --features html web.typ index.html

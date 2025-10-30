@@ -22,10 +22,12 @@ R10 Series, the steps are sometimes 1.23×, sometimes 1.25×, sometimes 1.28× a
 sometimes other factors.
 
 We here discuss a variation of the R10 Series, dubbing it
-the DR10 Series (Different Renard 10 Series). By changing the 6th and 9th
-elements of the series, we simplify the overall structure of the series --
-there are only two factors in DR10, 1.25× and 1.28×. We also get more numbers
-that align with powers of 2. Here is the DR10 Series:
+the #strong[R10c] Series (#strong[R]enard #strong[10] Series with more
+#strong[c]onsistent ratios). By changing the 6th and 9th elements of the
+series, we simplify the overall structure of the series -- there are only two
+factors between adjacent elements in R10s, namely 1.25× and 1.28×. We also get
+more elements that are exactly twice some prior element. Here is the
+R10c Series:
 
 - 1.00 (1st element)
 - 1.25 (2nd element)
@@ -66,7 +68,7 @@ By changing the 6th and 9th entries, we ensure that:
   and so on.
 
   #let ratios = {
-    let data = csv("dr10-ratios.tsv", delimiter: "\t")
+    let data = csv("r10c-ratios.tsv", delimiter: "\t")
 
     table(
       columns: (8%, 8%, 8%, 8%, 8%, 8%, 8%, 8%, 8%, 8%, 8%),
@@ -86,7 +88,7 @@ By changing the 6th and 9th entries, we ensure that:
   = R5, R4, R3
 
   Using this variation as a base, we get a different Renard 5 Series,
-  the DR5 Series:
+  the R5c Series:
 
   - 1.00 (1st element)
   - 1.60 (2nd element)
@@ -96,8 +98,9 @@ By changing the 6th and 9th entries, we ensure that:
   - 10.0
   - ...and so on...
 
-  What we might call the "DR3 Series" is also called the 1-2-5 Series, where
-  each step is a very coarse approximation of the cube root of 10:
+  What we might call the R3 Series, also called the 1-2-5 Series, where
+  each step is a very coarse approximation of the cube root of 10, is the same
+  as the R3c Series:
 
   - 1.00 (1st element)
   - 2.00 (2nd element)
@@ -105,8 +108,8 @@ By changing the 6th and 9th entries, we ensure that:
   - 10.0
   - ...and so on...
 
-  Perhaps a useful intermediate between DR3 and DR5 is the following selection
-  of numbers for an DR4 Series:
+  Perhaps a useful intermediate between R3c and R5c is the following selection
+  of numbers for an R4c Series:
 
   - 1.00 (1st element)
   - 1.60 (2nd element)
@@ -119,30 +122,30 @@ By changing the 6th and 9th entries, we ensure that:
 #block(breakable: false)[
   = A Notation for Elements
 
-  The DR10 Series can be viewed as all numbers we get by taking the base series
+  The R10c Series can be viewed as all numbers we get by taking the base series
   of ten numbers 1.00, 1.25, ..., 8.00, given above, and multiplying them by
   powers of ten.
 
   Then 1.00 is 10⁰ times the element with index 0 in the base
-  DR10 series, 1.25 is 10⁰ times the element with index 1 in the base DR10
-  series, 12.5 is 10¹ times the element with index 1 in the base DR10 series,
+  R10c series, 1.25 is 10⁰ times the element with index 1 in the base R10c
+  series, 12.5 is 10¹ times the element with index 1 in the base R10c series,
   and so on.
 
   It is consonant with traditional math notation to use a notation like
-  DR10(0)₀ for this. Then 1.25 would be DR10(0)₁, 1.60 would be
-  DR10(0)₂, 12.5 would be DR10(1)₁, and so on and so forth. However,
+  R10c(0)₀ for this. Then 1.25 would be R10c(0)₁, 1.60 would be
+  R10c(0)₂, 12.5 would be R10c(1)₁, and so on and so forth. However,
   a URN-like notation is more broadly useful because it does not require use of
   subscript characters.
 
   #let urns = {
-    let data = csv("dr?-urn.tsv", delimiter: "\t")
+    let data = csv("r?c-urn.tsv", delimiter: "\t")
 
     table(
       columns: (16%, 16%, 16%, 16%, 16%),
       stroke: none,
       fill: (_, row) => if calc.odd(row) { luma(240) } else { white },
       align: (col, _) => if col == 0 { center } else { right },
-      table.header([], [in DR10], [in DR5], [in DR4], [in DR3]),
+      table.header([], [in R10c], [in R5c], [in R4c], [in R3c]),
       [...], [...], [...], [...], [...],
       ..data.map(it => {
         it.enumerate().map(((i, txt)) => if i < 1 { txt } else { raw(txt) })

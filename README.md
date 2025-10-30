@@ -39,7 +39,7 @@ system of preferred numbers.
 
 ## Table of Ratios
 
-The file [`dr10-ratios.tsv`](./df10-ratios.tsv) contains a table of ratios in a
+The file [`r10c-ratios.tsv`](./r10c-ratios.tsv) contains a table of ratios in a
 machine readable format, starting with the elements in the decade `1..10`.
 
 - The first column is the element.
