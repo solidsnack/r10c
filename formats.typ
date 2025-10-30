@@ -1,14 +1,14 @@
 #let paged(info, doc, paper: "a5") = [
   #set page(
-    footer-descent: 25%,
-    header: context {
+    footer: context {
       let rel = query(<release>)
 
       if rel.len() > 0 {
         align(center)[#raw(rel.first().value)]
       }
+      align(center)[#counter(page).display(both: true)]
     },
-    header-ascent: 25%,
+    footer-descent: 40%,
     margin: (
       x: 10mm, // 148mm - (10mm + 10mm) = 128mm
       y: 25mm, // 210mm - (25mm + 25mm) = 160mm
