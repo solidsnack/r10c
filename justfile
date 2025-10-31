@@ -64,13 +64,13 @@ metadata:
       title: info.title,
       author: "$(git log -n1 --format=%an)",
       date: datetime(
-        year: $(git log -n1 --date=format:%Y --format=%ad),
-        month: $(git log -n1 --date=format:%m --format=%ad),
-        day: $(git log -n1 --date=format:%d --format=%ad),
+        year: $(git log -n1 --date=format-local:%Y --format=%ad),
+        month: $(git log -n1 --date=format-local:%m --format=%ad),
+        day: $(git log -n1 --date=format-local:%d --format=%ad),
       ),
     )
     #metadata(
-      info.label + ":$(git log -n1 --date=format:%Y%m%d --format=%ad-%h)"
+      info.label + ":$(git log -n1 --date=format-local:%Y%m%d --format=%ad-%h)"
     ) <release>
     EOF
 
