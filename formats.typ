@@ -44,7 +44,7 @@
           #block()[#author]
         ]
 
-        #block()[#link("https://" + info.domain)[#raw(info.domain)]]
+        #block()[#link("http://" + info.domain)[#raw(info.domain)]]
       ]
     }
   ]
