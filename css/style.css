@@ -29,12 +29,23 @@ dt::after {
   content: ":";
 }
 
+figure {
+    margin-left: 10%;
+    margin-right: 10%;
+    padding: 0;
+}
+
 h1 {
   text-align: center;
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-variant: small-caps;
+}
+
+h2, h3, h4, h5, h6, p, ul {
+    margin-left: 10%;
+    margin-right: 10%;
 }
 
 html {
@@ -50,7 +61,11 @@ td, th {
   text-align: left;
 }
 
-tr {
+tbody tr {
   border: 1px;
   border-style: solid none;
+}
+
+thead tr {
+  border: none;
 }
