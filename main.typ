@@ -63,8 +63,8 @@ By changing the 6th and 9th entries, we ensure that:
   = Ratio Table
 
   A table of elements of the series and their ratios to elements one step prior
-  (ratio 1), two steps prior (ratio 2), and so on. For example, ratio of 4 to
-  3.2 is 1.25 (ratio 1 column); the ratio of 4 to 2.5 is 1.6 (ratio 2 column);
+  (1°), two steps prior (2°), and so on. For example, the ratio of 4 to
+  3.2 is 1.25 (1° column); the ratio of 4 to 2.5 is 1.6 (2° column);
   and so on.
 
   #let ratios = {
@@ -75,8 +75,8 @@ By changing the 6th and 9th entries, we ensure that:
       stroke: none,
       fill: (_, row) => if calc.odd(row) { luma(240) } else { white },
       align: (col, _) => if col == 0 { center } else { left },
-      table.header([], [ratio 1], [ratio 2], [ratio 3], [ratio 4], [ratio 5],
-                       [ratio 6], [ratio 7], [ratio 8], [ratio 9], [ratio 10]),
+      table.header([], [1°], [2°], [3°], [4°], [5°],
+                       [6°], [7°], [8°], [9°], [10°]),
       ..data.flatten(),
     )
   }

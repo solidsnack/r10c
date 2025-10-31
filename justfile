@@ -26,7 +26,7 @@ dist-pdf: pdf
 
 # Build and view the PDF.
 view-pdf: dist-pdf
-    open tmp/dist/paged.pdf
+    open tmp/dist/{{label}}.pdf
 
 # Build the web page and place it in the distribution folder.
 dist-web: web
