@@ -2,15 +2,24 @@
 
 set shell := ['bash', '-o', 'errexit', '-o', 'nounset', '-o', 'pipefail', '-c']
 
-# # Build the website.
+label := shell(
+    "fgrep label ./info.typ | cut -d':' -f 2- | tr -Cd 'a-z0-9.-'"
+)
+
+domain := shell(
+    "fgrep domain ./info.typ | cut -d':' -f 2- | tr -Cd 'a-z0-9.-'"
+)
+
+# Build the website.
 [default]
 dist: (dist-web) (dist-pdf)
 
+# Build the PDF and place it in the distribution folder.
 dist-pdf: pdf
     #!/bin/bash
     set -o errexit -o nounset -o pipefail
 
-    label="$(fgrep label ./info.typ | cut -d':' -f 2- | tr -Cd 'a-z0-9')"
+    label={{label}}
 
     mkdir -p tmp/dist
     cp tmp/build/paged.pdf tmp/dist/"$label".pdf
@@ -19,6 +28,7 @@ dist-pdf: pdf
 view-pdf: dist-pdf
     open tmp/dist/paged.pdf
 
+# Build the web page and place it in the distribution folder.
 dist-web: web
     #!/bin/bash
     set -o errexit -o nounset -o pipefail
@@ -30,6 +40,10 @@ dist-web: web
 # Build and view the web page.
 view-web: dist-web
     open tmp/dist/index.html
+
+# Deploy the distribution.
+deploy url=("s3://" + domain + "/"): dist
+    echo aws s3 sync tmp/dist/ {{url}} --delete
 
 # Run Typst.
 typst input output *args:
@@ -114,5 +128,5 @@ clean:
     mkdir -p tmp/
 
 # Display tabular data with `xsv`.
-display data="r10f-ratios.tsv":
+display data:
     @xsv table {{data}}
