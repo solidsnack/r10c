@@ -43,7 +43,7 @@ h1, h2, h3, h4, h5, h6 {
   font-variant: small-caps;
 }
 
-h2, h3, h4, h5, h6, body > div > p, body > div > ul {
+h2, h3, h4, h5, h6, body > div > p, body > div > ul, body > nav > ol {
     margin-left: 10%;
     margin-right: 10%;
 }
