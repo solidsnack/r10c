@@ -52,7 +52,6 @@
   #doc
 ]
 
-// Do nothing.
 #let web(info, doc) = [
   #html.link(href: "css/normalize.css", rel: "stylesheet")
   #html.link(href: "css/style.css", rel: "stylesheet")
