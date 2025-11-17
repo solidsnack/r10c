@@ -27,7 +27,6 @@
   )
 
   #show heading: smallcaps
-  #show heading: set align(right)
 
   #show title: txt => text(size: 4mm, weight: "bold")[#smallcaps(txt)]
   #show title: set align(center)
