@@ -87,7 +87,7 @@ By changing the 6th and 9th entries, we ensure that:
 #block(breakable: false)[
   = R5, R4, R3
 
-  Using this variation as a base, we get a different Renard 5 Series,
+  Using R10c variation as a base, we get a different Renard 5 Series,
   the R5c Series:
 
   - 1.00 (1st element)
@@ -144,7 +144,7 @@ By changing the 6th and 9th entries, we ensure that:
       columns: (16%, 16%, 16%, 16%, 16%),
       stroke: none,
       fill: (_, row) => if calc.odd(row) { luma(240) } else { white },
-      align: (col, _) => if col == 0 { center } else { right },
+      align: (col, _) => if col == 0 { center } else { left },
       table.header([], [in R10c], [in R5c], [in R4c], [in R3c]),
       [...], [...], [...], [...], [...],
       ..data.map(it => {
@@ -155,4 +155,41 @@ By changing the 6th and 9th entries, we ensure that:
   }
 
   #figure(urns)
+]
+
+#block(breakable: false)[
+  = Shifting the Series
+
+  There is more than one way to sequence steps of 1.25× and 1.28× to get to
+  10×. The only real constraint is that there be 7 steps of 1.25× and 3 steps
+  of 1.28×: 1.25⁷ × 1.28³ = 10.
+
+  Starting at 1, the series follows a sequence of 1.25×, 1.25×, 1.28× that
+  repeats 3 times. In the transition from one decade to the next, there is a
+  long run of 3 steps of 1.25×.
+
+  #table(
+    columns: (20%, 20%),
+    stroke: none,
+    align: right,
+    [6.40], [],
+    [], [1.25×],
+    [8.00], [],
+    [], [1.25×],
+    [10.0], [],
+    [], [1.25×],
+    [12.5], [],
+  )
+
+  One family of variations is those where we shift the long run and take it
+  in a different place. In the series previously presented, we start the long
+  run at index 8 (at `r10c:*:8`). If we want to start it at index 1 (at
+  `r10c:*:1`), we have to change the value there (from 1.25 to 1.28), and we
+  get a series that starts with: 1.00, 1.28, 1.60, 2.00 and 2.50. If we start
+  it at the 6th index (at `r10c:*:6`), we get a series with 3.20, 4.00, 5.00,
+  and 6.25 (instead of 6.40) in the latter half.
+
+  One can choose sequences of 7 steps of 1.25× and 3 steps of 1.28 in many
+  ways, beyond just shifting the longer run, but it can lead to terms of the
+  series with many decimal places.
 ]

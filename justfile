@@ -43,7 +43,7 @@ view-web: dist-web
 
 # Deploy the distribution.
 deploy url=("s3://" + domain + "/"): dist
-    echo aws s3 sync tmp/dist/ {{url}} --delete
+    aws s3 sync --delete tmp/dist/ {{url}} --delete
 
 # Run Typst.
 typst input output *args:
