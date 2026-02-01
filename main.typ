@@ -168,18 +168,20 @@ By changing the 6th and 9th entries, we ensure that:
   repeats 3 times. In the transition from one decade to the next, there is a
   long run of 3 steps of 1.25×.
 
-  #table(
-    columns: (20%, 20%),
-    stroke: none,
-    align: right,
-    [6.40], [],
-    [], [1.25×],
-    [8.00], [],
-    [], [1.25×],
-    [10.0], [],
-    [], [1.25×],
-    [12.5], [],
-  )
+  #figure[
+    #table(
+      columns: 2,
+      stroke: none,
+      align: right,
+      [6.40], [],
+      [], [1.25×],
+      [8.00], [],
+      [], [1.25×],
+      [10.0], [],
+      [], [1.25×],
+      [12.5], [],
+    )
+  ]
 
   One family of variations is those where we shift the long run and take it
   in a different place. In the series previously presented, we start the long
